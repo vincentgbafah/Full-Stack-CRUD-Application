@@ -1,0 +1,167 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.5rem;
+  width: min(1100px, 100%);
+}
+
+.panel {
+  background: rgba(245, 241, 232, 0.86);
+  border: 1px solid rgba(67, 56, 39, 0.15);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 50px rgba(23, 16, 8, 0.18);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  margin: 0;
+  color: var(--cocoa-700);
+}
+
+h1 {
+  margin: 0.35rem 0;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--ink-900);
+}
+
+.subtitle {
+  margin: 0 0 1.2rem;
+  color: var(--ink-700);
+}
+
+.task-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink-900);
+}
+
+input,
+textarea {
+  width: 100%;
+  font: inherit;
+  border: 1px solid rgba(30, 39, 46, 0.2);
+  border-radius: 12px;
+  padding: 0.72rem 0.85rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink-900);
+}
+
+input:focus,
+textarea:focus {
+  outline: 3px solid rgba(214, 106, 77, 0.25);
+  border-color: var(--coral-500);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.65rem 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(130deg, var(--teal-700), var(--teal-500));
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ghost {
+  background: #fff;
+  color: var(--teal-700);
+  border: 1px solid rgba(28, 82, 76, 0.3);
+}
+
+.danger {
+  background: linear-gradient(140deg, #b94634, #d05d44);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin: 0;
+  color: var(--ink-900);
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.task {
+  border: 1px solid rgba(30, 39, 46, 0.14);
+  border-radius: 14px;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.task h3 {
+  margin: 0;
+  color: var(--ink-900);
+}
+
+.task p {
+  margin: 0.35rem 0 0;
+  color: var(--ink-700);
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.completed {
+  opacity: 0.68;
+}
+
+.completed h3 {
+  text-decoration: line-through;
+}
+
+.status-message,
+.error-message {
+  margin: 0;
+  font-weight: 500;
+}
+
+.error-message {
+  margin-top: 0.9rem;
+  color: #a23022;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+}
