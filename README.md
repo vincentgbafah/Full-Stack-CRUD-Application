@@ -1,74 +1,80 @@
+# Full-Stack CRUD Task Manager
 
-# Task 1: Full-Stack CRUD Application (Task Manager)
+A full-stack web application with CRUD functionality built using:
 
-This project is a full-stack CRUD web application built with:
-
-- `Node.js + Express` for the backend REST API
-- `React + Vite` for the frontend UI
-- `MongoDB + Mongoose` for data storage
-
-It satisfies the assignment requirement to build a complete CRUD app using Node.js/Express, React, and MongoDB.
-
-## Requirement Coverage
-
-1. Set up a back-end server with Express: `server/server.js`
-2. Create a REST API for CRUD operations: `server/src/routes/taskRoutes.js`
-3. Build a front-end with React that consumes the API: `client/src/App.jsx`
-4. Use MongoDB to store data: `server/src/models/Task.js` + `server/src/config/db.js`
+- Node.js + Express (REST API)
+- React + Vite (frontend)
+- MongoDB + Mongoose (database)
 
 ## Project Structure
 
 ```text
 .
-|-- client/   # React frontend (Vite)
-`-- server/   # Express + MongoDB API
+|-- client/   # React frontend
+`-- server/   # Express API
 ```
 
-## CRUD Features
+## Features
 
-- Create task
-- Read all tasks / single task
-- Update task (title, description, completed)
+- Create a task
+- Read all tasks
+- Update task title/description/status
 - Delete task
+- Responsive UI connected to live backend API
 
-## Backend Setup (Node.js + Express + MongoDB)
+## Backend Setup (Express + MongoDB)
 
-1. Go to backend folder:
+1. Go to the server folder:
 
 ```bash
 cd server
 ```
 
-2. Create environment file:
+2. Create your environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-3. Set database connection in `.env`:
+Set `MONGO_URI` in `server/.env` using one of these options:
+
+- Local MongoDB:
 
 ```env
-PORT=5000
-MONGO_URI=<your_mongodb_connection_string>
+MONGO_URI=mongodb://127.0.0.1:27017/task_manager_db
 ```
 
-4. Install dependencies:
+- MongoDB Atlas:
+
+```env
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/task_manager_db?retryWrites=true&w=majority
+```
+
+3. Install dependencies (if needed):
 
 ```bash
 npm install
 ```
 
-5. Run backend:
+4. Run the API:
 
 ```bash
 npm run dev
 ```
 
-Backend URL: `http://localhost:5000`
+Server runs on `http://localhost:5000`.
+
+### API Endpoints
+
+- `GET /api/tasks` - Get all tasks
+- `GET /api/tasks/:id` - Get one task
+- `POST /api/tasks` - Create task
+- `PUT /api/tasks/:id` - Update task
+- `DELETE /api/tasks/:id` - Delete task 
 
 ## Frontend Setup (React)
 
-1. Open a new terminal and go to frontend folder:
+1. Open a new terminal and go to client:
 
 ```bash
 cd client
@@ -80,7 +86,10 @@ cd client
 cp .env.example .env
 ```
 
-3. Install dependencies:
+`VITE_API_BASE_URL` can stay empty when using the Vite proxy in `client/vite.config.js`.
+Only set it if you want to call a different API host directly.
+
+3. Install dependencies (if needed):
 
 ```bash
 npm install
@@ -92,32 +101,23 @@ npm install
 npm run dev
 ```
 
-Frontend URL: `http://localhost:5173`
+Frontend runs on `http://localhost:5173` and proxies `/api` to the backend.
 
-Vite proxy forwards `/api` requests to `http://localhost:5000`.
-
-## REST API Endpoints
-
-- `GET /api/tasks` -> fetch all tasks
-- `GET /api/tasks/:id` -> fetch single task
-- `POST /api/tasks` -> create task
-- `PUT /api/tasks/:id` -> update task
-- `DELETE /api/tasks/:id` -> delete task
-
-## Postman Testing
-
-Base URL:
-
-```text
-http://localhost:5000/api/tasks
-```
-
-Example create request body:
+## Example Task Payload
 
 ```json
 {
-  "title": "Build full-stack CRUD app",
-  "description": "Connect React UI to Express API",
+  "title": "Build CRUD app",
+  "description": "Create backend API and connect React frontend",
   "completed": false
 }
 ```
+
+## Troubleshooting
+
+- `MongoDB connection error: The uri parameter ... undefined`
+  - `server/.env` is missing or `MONGO_URI` is not set.
+- `MongoDB connection error: bad auth : authentication failed`
+  - Atlas username/password is incorrect, or IP is not allowed in Atlas Network Access.
+- Frontend loads but API calls fail
+  - Ensure backend is running on `http://localhost:5000` and keep Vite proxy config enabled.
